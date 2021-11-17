@@ -5,13 +5,13 @@ import java.util.List;
 public class WorldSubmission {
 
     private String id;
-    private Integer generationCount;
-    private List<Integer[][]> generations;
+    private int generationCount;
+    private List<int[][]> generations;
 
     public WorldSubmission() {
     }
 
-    public WorldSubmission(String id, Integer generationCount, List<Integer[][]> generations) {
+    public WorldSubmission(String id, int generationCount, List<int[][]> generations) {
         this.id = id;
         this.generationCount = generationCount;
         this.generations = generations;
@@ -25,19 +25,19 @@ public class WorldSubmission {
         this.id = id;
     }
 
-    public Integer getGenerationCount() {
+    public int getGenerationCount() {
         return generationCount;
     }
 
-    public void setGenerationCount(Integer generationCount) {
+    public void setGenerationCount(int generationCount) {
         this.generationCount = generationCount;
     }
 
-    public List<Integer[][]> getGenerations() {
+    public List<int[][]> getGenerations() {
         return generations;
     }
 
-    public void setGenerations(List<Integer[][]> generations) {
+    public void setGenerations(List<int[][]> generations) {
         this.generations = generations;
     }
 }

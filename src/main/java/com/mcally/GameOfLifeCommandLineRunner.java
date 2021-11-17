@@ -4,6 +4,8 @@ package com.mcally;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class GameOfLifeCommandLineRunner implements CommandLineRunner {
 
@@ -15,6 +17,7 @@ public class GameOfLifeCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        service.run();
+//        if(new ArrayList<>(args).contains(""))
+//        service.run();
     }
 }

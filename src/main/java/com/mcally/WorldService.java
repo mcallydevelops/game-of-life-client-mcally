@@ -23,8 +23,8 @@ public class WorldService {
         return objectMapper.readValue(rawResult, World.class);
     }
 
-    public void submitResult(WorldSubmission worldSubmission) {
-        String s = restTemplate.postForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/results", worldSubmission, String.class);
-        System.out.println("here");
+    public String submitResult(WorldSubmission worldSubmission) {
+        String result = restTemplate.postForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/results", worldSubmission, String.class);
+        return result;
     }
 }

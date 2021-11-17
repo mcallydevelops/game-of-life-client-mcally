@@ -3,14 +3,14 @@ package com.mcally.models;
 public class World {
 
     private String id;
-    private Integer generationCount;
-    private Integer size;
-    private Integer[][] world;
+    private int generationCount;
+    private int size;
+    private int[][] world;
 
     public World() {
     }
 
-    public World(String id, Integer generationCount, Integer size, Integer[][] world) {
+    public World(String id, int generationCount, int size, int[][] world) {
         this.id = id;
         this.generationCount = generationCount;
         this.size = size;
@@ -25,27 +25,27 @@ public class World {
         this.id = id;
     }
 
-    public Integer getGenerationCount() {
+    public int getGenerationCount() {
         return generationCount;
     }
 
-    public void setGenerationCount(Integer generationCount) {
+    public void setGenerationCount(int generationCount) {
         this.generationCount = generationCount;
     }
 
-    public Integer getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
-    public Integer[][] getWorld() {
+    public int[][] getWorld() {
         return world;
     }
 
-    public void setWorld(Integer[][] world) {
+    public void setWorld(int[][] world) {
         this.world = world;
     }
 }

@@ -52,6 +52,7 @@ class WorldServiceTest {
         assertEquals(5, world.getWorld()[0][4]);
     }
 
+
     @Test
     void submitResult() throws Exception {
         WorldSubmission worldSubmission = new WorldSubmission();
@@ -60,6 +61,5 @@ class WorldServiceTest {
 
         verify(restTemplate).postForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/results", worldSubmission, String.class);
     }
-
 
 }
