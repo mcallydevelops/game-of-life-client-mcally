@@ -71,14 +71,7 @@ class GameOfLifeServiceTest {
         verify(worldService).generateAndRetrieveWorld();
         verify(worldService).submitResult(captor.capture());
         WorldSubmission value = captor.getValue();
-        assertEquals(1, value.getGenerations().get(0)[0][0]);
-        assertEquals(1, value.getGenerations().get(0)[0][1]);
-        assertEquals(1, value.getGenerations().get(0)[1][0]);
-        assertEquals(0, value.getGenerations().get(0)[1][1]);
-        assertEquals(1, value.getGenerations().get(1)[0][0]);
-        assertEquals(1, value.getGenerations().get(1)[0][1]);
-        assertEquals(1, value.getGenerations().get(1)[1][0]);
-        assertEquals(1, value.getGenerations().get(1)[1][1]);
+        assertEquals(2, value.getGenerationCount());
     }
 
     @Test
