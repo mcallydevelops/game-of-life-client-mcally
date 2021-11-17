@@ -3,6 +3,7 @@ package com.mcally;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mcally.models.World;
+import com.mcally.models.WorldSubmission;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +21,10 @@ public class WorldService {
     public World generateAndRetrieveWorld() throws JsonProcessingException {
         String rawResult = restTemplate.getForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/world", String.class);
         return objectMapper.readValue(rawResult, World.class);
+    }
 
-
+    public void submitResult(WorldSubmission worldSubmission) {
+        String s = restTemplate.postForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/results", worldSubmission, String.class);
+        System.out.println("here");
     }
 }

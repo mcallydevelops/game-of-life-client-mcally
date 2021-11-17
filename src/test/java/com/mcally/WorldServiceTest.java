@@ -2,6 +2,7 @@ package com.mcally;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mcally.models.World;
+import com.mcally.models.WorldSubmission;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
@@ -9,8 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class WorldServiceTest {
 
@@ -50,6 +50,15 @@ class WorldServiceTest {
         assertEquals(3, world.getWorld()[0][2]);
         assertEquals(4, world.getWorld()[0][3]);
         assertEquals(5, world.getWorld()[0][4]);
+    }
+
+    @Test
+    void submitResult() throws Exception {
+        WorldSubmission worldSubmission = new WorldSubmission();
+
+        worldService.submitResult(worldSubmission);
+
+        verify(restTemplate).postForObject("https://game-of-life-service-ai3nmiz7aa-uc.a.run.app/results", worldSubmission, String.class);
     }
 
 
