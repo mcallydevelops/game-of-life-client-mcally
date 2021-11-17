@@ -29,20 +29,18 @@ public class GameOfLifeService {
                 int[][] newGen = new int[world.getSize()][world.getSize()];
                 for (int i = 0; i < world.getSize(); ++i) {
                     for (int j = 0; j < world.getSize(); ++j) {
-                        try {
-                            int neighbors = 0;
-                            //horizontal neighbors
-                            neighbors += getHorizontalNeighbors(world, prevGen, i, j, neighbors);
-                            //vertical neighbors
-                            neighbors += getVerticalNeighbors(world, prevGen, i, j, neighbors);
-                            //diagonal neighbors
-                            neighbors += getDiagonalNeighbors(world, prevGen, i, j, neighbors);
-
-                            newGen[i][j] = runConwaysRules(prevGen[i][j], neighbors);
-
-                        } catch (Exception exception) {
-                            throw exception;
+                        int neighbors = 0;
+                        for (int iOne = -1; iOne <= 1; ++iOne) {
+                            for (int jOne = -1; jOne <= 1; ++jOne) {
+                                if (isArrayIndexSafe(iOne + i, jOne + j, world.getSize())) {
+                                    neighbors += prevGen[iOne + i][jOne + j];
+                                }
+                            }
                         }
+
+
+                        neighbors -= prevGen[i][j];
+                        newGen[i][j] = runConwaysRules(prevGen[i][j], neighbors);
                     }
                 }
                 result.add(newGen);
@@ -79,30 +77,7 @@ public class GameOfLifeService {
         return 0;
     }
 
-    private int getVerticalNeighbors(World world, int[][] prevGen, int i, int j, int neighbors) {
-        if (i == 0) {
-            neighbors += prevGen[i + 1][j];
-        } else if (i == world.getSize() - 1) {
-            neighbors += prevGen[i - 1][j];
-        } else {
-            neighbors = neighbors + prevGen[i - 1][j] + prevGen[i + 1][j];
-        }
-        return neighbors;
+    private boolean isArrayIndexSafe(int i, int j, int size) {
+        return i >= 0 && i < size && j >= 0 && j < size;
     }
-
-    private int getHorizontalNeighbors(World world, int[][] prevGen, int i, int j, int neighbors) {
-        if (j == 0) {
-            neighbors += prevGen[i][j + 1];
-        } else if (j == world.getSize() - 1) {
-            neighbors += prevGen[i][j - 1];
-        } else {
-            neighbors = neighbors + prevGen[i][j + 1] + prevGen[i][j - 1];
-        }
-        return neighbors;
-    }
-
-    private int getDiagonalNeighbors(World world, int[][] prevGen, int i, int j, int neighbors) {
-        return 0;
-    }
-
 }

@@ -35,6 +35,53 @@ class GameOfLifeServiceTest {
     }
 
     @Test
+    void twoByTwoWorld() throws Exception {
+        when(worldService.generateAndRetrieveWorld()).thenReturn(new World("abc123", 2, 2, new int[][]{
+                {1, 1},
+                {1, 0}
+        }));
+
+        service.run();
+
+        ArgumentCaptor<WorldSubmission> captor = ArgumentCaptor.forClass(WorldSubmission.class);
+        verify(worldService).generateAndRetrieveWorld();
+        verify(worldService).submitResult(captor.capture());
+        WorldSubmission value = captor.getValue();
+        assertEquals(1, value.getGenerations().get(0)[0][0]);
+        assertEquals(1, value.getGenerations().get(0)[0][1]);
+        assertEquals(1, value.getGenerations().get(0)[1][0]);
+        assertEquals(0, value.getGenerations().get(0)[1][1]);
+        assertEquals(1, value.getGenerations().get(1)[0][0]);
+        assertEquals(1, value.getGenerations().get(1)[0][1]);
+        assertEquals(1, value.getGenerations().get(1)[1][0]);
+        assertEquals(1, value.getGenerations().get(1)[1][1]);
+    }
+
+    @Test
+    void threeByThreeWorld() throws Exception {
+        when(worldService.generateAndRetrieveWorld()).thenReturn(new World("abc123", 2, 3, new int[][]{
+                {1, 1, 0},
+                {1, 0, 1},
+                {1, 1, 1}
+        }));
+
+        service.run();
+
+        ArgumentCaptor<WorldSubmission> captor = ArgumentCaptor.forClass(WorldSubmission.class);
+        verify(worldService).generateAndRetrieveWorld();
+        verify(worldService).submitResult(captor.capture());
+        WorldSubmission value = captor.getValue();
+        assertEquals(1, value.getGenerations().get(0)[0][0]);
+        assertEquals(1, value.getGenerations().get(0)[0][1]);
+        assertEquals(1, value.getGenerations().get(0)[1][0]);
+        assertEquals(0, value.getGenerations().get(0)[1][1]);
+        assertEquals(1, value.getGenerations().get(1)[0][0]);
+        assertEquals(1, value.getGenerations().get(1)[0][1]);
+        assertEquals(1, value.getGenerations().get(1)[1][0]);
+        assertEquals(1, value.getGenerations().get(1)[1][1]);
+    }
+
+    @Test
     void failingWorldTest() throws Exception {
         when(worldService.generateAndRetrieveWorld()).thenReturn(failingWorld());
 
